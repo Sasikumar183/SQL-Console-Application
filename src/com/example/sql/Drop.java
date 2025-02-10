@@ -1,3 +1,4 @@
+package com.example.sql;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,5 +20,4 @@ public class Drop {
 			System.out.println("table dropped");
 
 	}
-
 }

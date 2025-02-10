@@ -1,3 +1,5 @@
+package com.example.sql;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,7 +25,7 @@ public class CreateTable {
         }
         int i=query.toUpperCase().indexOf("PRIMARY KEY"),j=query.toUpperCase().lastIndexOf("PRIMARY KEY");
         if(i!=j) {
-        	System.out.println("Multiple primary key not allowed");
+        	System.out.println("Multiple primary keys not allowed");
         	return;
         }
         String[] columns=query.substring(stInd+1,endInd).split(",");

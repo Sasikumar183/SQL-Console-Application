@@ -1,3 +1,5 @@
+package com.example.sql;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -176,7 +178,6 @@ public class AlterTable {
         }
         
         String constraint = queryPart;
-        System.out.println(constraint);
 
         for (int i = 0; i < database.length(); i++) {
             JSONObject obj = database.getJSONObject(i);
@@ -188,7 +189,7 @@ public class AlterTable {
                         String[] colParts = val.getString(j).trim().split(" ");
                         if (colParts.length > 0 && colParts[0].equals(colName)) {
                             val.put(j, val.getString(j)+" "+colParts[0] + " " + constraint); 
-                            System.out.println("Constraint added to" + colName);
+                            System.out.println("Constraint added to " + colName);
                             return;
                         }
                     }

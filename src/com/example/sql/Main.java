@@ -1,3 +1,5 @@
+package com.example.sql;
+
 import java.util.Scanner;
 
 import org.json.JSONArray;
@@ -24,13 +26,13 @@ public class Main {
 					    }
 					    
 					    else if(query.toUpperCase().startsWith("DELETE FROM")) {
-					        DeleteTable2.delete(database,query);
+					        DeleteData.delete(database,query);
 					    }
 					    else if(query.toUpperCase().startsWith("UPDATE ")) {
-					        UpdateTable2.update(database, query);
+					        Update.update(database, query);
 					    }
 					    else if(query.toUpperCase().startsWith("SELECT ")) {
-					        SelectTable2.select(database,query);
+					        SelectTable.select(database,query);
 					    }
 					    else if(query.toUpperCase().startsWith("TRUNCATE TABLE")) {
 					        Truncate.truncate(database,query);
@@ -43,6 +45,9 @@ public class Main {
 					    }
 					    else if(query.toUpperCase().startsWith("ALTER TABLE")) {
 					    	AlterTable.alterTable(database, query);
+					    }
+					    else if(query.toUpperCase().startsWith("SHOW TABLE")) {
+					    	ShowTable.showTable(database, query);
 					    }
 					    else {
 					    	System.out.println("Check Syntax");

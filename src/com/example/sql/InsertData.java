@@ -1,3 +1,4 @@
+package com.example.sql;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,15 +53,20 @@ public class InsertData {
                 Map<String, String> colValueMap = new HashMap<>();
 
                 if (columns != null) {//for insert into user(col1,col2..) values(val1,val2...)
+                	if(columns.length!=values.length) {
+                		System.out.println("Enter the column values correctly");
+            			return;
+                	}
                     for (int j = 0; j < columns.length; j++) {
                         colValueMap.put(columns[j].trim(),j<values.length?values[j]:"NULL");
                     }
                 } else { //for insert into user values(val1,val2...)
+                	if(values.length!=colCount) {
+                		System.out.println("Enter the column values correctly");
+            			return;
+                }
                     for (int j=0;j<colCount;j++) {
-                    	if(j>=values.length) {
-                    		System.out.println("Enter the column values correctly");
-                    		return;
-                    	}
+                    	
                         colValueMap.put(firstRow.getString(j), j<values.length?values[j]:"NULL");
                     }
                 }
