@@ -145,7 +145,7 @@ public class AlterTable {
     			//System.out.println(val);
     			for(int k=0;k<val.length();k++) {
     				String s=val.getString(k);
-    				if(s.contains(query.split("")[0]))
+    				if(s.contains(query.split(" ")[0]))
     					return;
     				
     			}

@@ -55,7 +55,13 @@ public class InsertData {
 
                 if (columns != null) {//for insert into user(col1,col2..) values(val1,val2...)
                     for (int j = 0; j < columns.length; j++) {
+                    	if(Colcontains(columns[j],firstRow)) {
                         colValueMap.put(columns[j].trim(),j<values.length?values[j]:"NULL");
+                    	}
+                        else {
+                        	System.out.println("Column Not Found");
+                        	return;
+                        }
                     }
                 } else { //for insert into user values(val1,val2...)
                     for (int j=0;j<colCount;j++) {
@@ -192,6 +198,15 @@ public class InsertData {
             }
         }
         return false;
+    }
+    
+    static boolean Colcontains(String columns,JSONArray rowDataHead) {
+    	for(int i=0;i<rowDataHead.length();i++) {
+    		if(rowDataHead.getString(i).equals(columns)) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
 }
