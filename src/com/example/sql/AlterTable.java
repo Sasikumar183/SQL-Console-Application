@@ -43,6 +43,10 @@ public class AlterTable {
         }
     }
     private static void addColumn(JSONArray database, String query, String table_name) {
+    	if(query.toUpperCase().indexOf("PRIMARY KEY")!=-1) {
+    		System.out.println("Cannot add a PRIMARY KEY column");
+    		return ;
+    	}
         for (int i = 0; i < database.length(); i++) {
             JSONObject table = database.getJSONObject(i);
             if (table.has(table_name)) {
@@ -54,6 +58,11 @@ public class AlterTable {
                 }
                 
                 JSONArray tableColumns=tableData.getJSONArray(0);
+                int idx=tableColumns.toList().indexOf(newCol);
+                if(idx!=-1) {
+                	System.out.println("Column already exist");
+                	return;
+                }
                 tableColumns.put(newCol);
 
                 for (int j=1;j<tableData.length();j++) {
@@ -133,6 +142,14 @@ public class AlterTable {
     		if(obj.has(tablename)) {
     			JSONArray col=obj.getJSONArray(tablename);
     			JSONArray val=col.getJSONArray(0);
+    			//System.out.println(val);
+    			for(int k=0;k<val.length();k++) {
+    				String s=val.getString(k);
+    				if(s.contains(query.split("")[0]))
+    					return;
+    				
+    			}
+    			
     			val.put(query);
     		}
     	}

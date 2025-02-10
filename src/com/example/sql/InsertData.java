@@ -1,5 +1,6 @@
 package com.example.sql;
 
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InsertData {
-    private static int increval=1;
+    //private static int increval=1;
 	public static void insert(JSONArray database, String query) {
         query = query.substring(11).trim();
         int valInd = query.toUpperCase().indexOf("VALUES");
@@ -53,20 +54,15 @@ public class InsertData {
                 Map<String, String> colValueMap = new HashMap<>();
 
                 if (columns != null) {//for insert into user(col1,col2..) values(val1,val2...)
-                	if(columns.length!=values.length) {
-                		System.out.println("Enter the column values correctly");
-            			return;
-                	}
                     for (int j = 0; j < columns.length; j++) {
                         colValueMap.put(columns[j].trim(),j<values.length?values[j]:"NULL");
                     }
                 } else { //for insert into user values(val1,val2...)
-                	if(values.length!=colCount) {
-                		System.out.println("Enter the column values correctly");
-            			return;
-                }
                     for (int j=0;j<colCount;j++) {
-                    	
+                    	if(j>=values.length) {
+                    		System.out.println("Enter the column values correctly");
+                    		return;
+                    	}
                         colValueMap.put(firstRow.getString(j), j<values.length?values[j]:"NULL");
                     }
                 }
@@ -99,7 +95,7 @@ public class InsertData {
 
 
                 tableData.put(rowData);
-                increval++;
+                //increval++;
                 System.out.println("Inserted into '" + tableName + "' successfully!");
                 return;
             }
@@ -121,7 +117,9 @@ public class InsertData {
                         if(curCol.toLowerCase().indexOf("auto_increment") == -1) {
                             return -1;
                         } else {
-                            return increval;
+                        	int curValue=tableData.getInt(1);
+                        	tableData.put(1,curValue+1);
+                            return curValue;
                         }
                     }
                 }

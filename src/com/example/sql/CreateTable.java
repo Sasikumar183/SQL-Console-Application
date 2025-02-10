@@ -45,12 +45,14 @@ public class CreateTable {
         JSONArray tableSchemaData=new JSONArray();        
         tableData.put(columnData);
         tableSchemaData.put(columnType);
+        tableSchemaData.put(1);
         JSONObject table=new JSONObject();
         JSONObject tableSchema=new JSONObject();
         table.put(tableName,tableData);
         tableSchema.put(tableName+"schema",tableSchemaData);
         database.put(table);
         database.put(tableSchema);
+        System.out.println(database);
         System.out.println("Table '"+tableName+"' created successfully!");
     }
 }
